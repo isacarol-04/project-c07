@@ -1,7 +1,7 @@
 import { pool } from '../config/db.js'
 
 export async function createExamRequest({ data_solicitacao, consulta_id, funcionario_id, exame_id }) {
-  const [result] = await pool.query(
+  const [result] = await pool.execute(
     'INSERT INTO solicitacaoExame (data_solicitacao, consulta, funcionario, exame) VALUES (?, ?, ?, ?)',
     [data_solicitacao, consulta_id, funcionario_id, exame_id]
   )
@@ -9,17 +9,17 @@ export async function createExamRequest({ data_solicitacao, consulta_id, funcion
 }
 
 export async function getExamRequestById(id) {
-  const [rows] = await pool.query('SELECT * FROM solicitacaoExame WHERE id_solicitacao_exame = ?', [id])
+  const [rows] = await pool.execute('SELECT * FROM solicitacaoExame WHERE id_solicitacao_exame = ?', [id])
   return rows[0]
 }
 
 export async function getAllExamRequests() {
-  const [rows] = await pool.query(`
+  const [rows] = await pool.execute(`
     SELECT 
       s.*, 
       e.nome_exame, 
       f.nome as nome_funcionario,  
-      p.id as id_paciente
+      p.id_paciente as id_paciente,
       p.nome as nome_paciente,
       m.id_medico,                  
       m.nome as nome_medico       
@@ -34,12 +34,12 @@ export async function getAllExamRequests() {
 }
 
 export async function addExamResult(id, resultado) {
-  await pool.query(
+  await pool.execute(
     'UPDATE solicitacaoExame SET resultado = ? WHERE id_solicitacao_exame = ?',
     [resultado, id]
   )
 }
 
 export async function deleteExamRequest(id) {
-  await pool.query('DELETE FROM solicitacaoExame WHERE id_solicitacao_exame = ?', [id])
+  await pool.execute('DELETE FROM solicitacaoExame WHERE id_solicitacao_exame = ?', [id])
 }

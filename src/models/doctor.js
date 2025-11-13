@@ -1,7 +1,7 @@
 import { pool } from '../config/db.js'
 
 export async function createDoctor({ nome, crm, especialidade_id }) {
-  const [result] = await pool.query(
+  const [result] = await pool.execute(
     'INSERT INTO medico (nome, crm, especialidade) VALUES (?, ?, ?)',
     [nome, crm, especialidade_id]
   )
@@ -9,12 +9,12 @@ export async function createDoctor({ nome, crm, especialidade_id }) {
 }
 
 export async function getDoctorById(id) {
-  const [rows] = await pool.query('SELECT * FROM medico WHERE id_medico = ?', [id])
+  const [rows] = await pool.execute('SELECT * FROM medico WHERE id_medico = ?', [id])
   return rows[0]
 }
 
 export async function getAllDoctors() {
-  const [rows] = await pool.query(`
+  const [rows] = await pool.execute(`
     SELECT m.*, e.nome as nome_especialidade 
     FROM medico m
     JOIN especialidade e ON m.especialidade = e.id_especialidade
@@ -23,12 +23,12 @@ export async function getAllDoctors() {
 }
 
 export async function updateDoctor(id, { nome, crm, especialidade_id }) {
-  await pool.query(
+  await pool.execute(
     'UPDATE medico SET nome = ?, crm = ?, especialidade = ? WHERE id_medico = ?',
     [nome, crm, especialidade_id, id]
   )
 }
 
 export async function deleteDoctor(id) {
-  await pool.query('DELETE FROM medico WHERE id_medico = ?', [id])
+  await pool.execute('DELETE FROM medico WHERE id_medico = ?', [id])
 }
