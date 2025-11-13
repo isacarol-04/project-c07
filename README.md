@@ -107,4 +107,3 @@ project-c07/
 ---
 
 🩺 *Trabalho acadêmico — Disciplina de Banco de Dados*
-"# project-c07" 
