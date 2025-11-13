@@ -1,0 +1,17 @@
+{
+  "name": "integration-c07",
+  "version": "1.0.0",
+  "description": "Projeto de Banco de Dados",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "seed": "node src/config/seed.js"
+  },
+  "author": "Isabelle Caroline Pereira (2097 GEC) & Lucas de Souza Magalhães (617 GES)",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "mysql2": "^3.15.3",
+    "readline-sync": "^1.4.10"
+  }
+}
