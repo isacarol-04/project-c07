@@ -15,11 +15,20 @@ export async function getExamRequestById(id) {
 
 export async function getAllExamRequests() {
   const [rows] = await pool.query(`
-    SELECT s.*, e.nome_exame, p.nome as nome_paciente
+    SELECT 
+      s.*, 
+      e.nome_exame, 
+      f.nome as nome_funcionario,  
+      p.id as id_paciente
+      p.nome as nome_paciente,
+      m.id_medico,                  
+      m.nome as nome_medico       
     FROM solicitacaoExame s
     JOIN exame e ON s.exame = e.id_exame
     JOIN consulta c ON s.consulta = c.id_consulta
     JOIN paciente p ON c.paciente = p.id_paciente
+    JOIN medico m ON c.medico = m.id_medico              
+    JOIN funcionario f ON s.funcionario = f.id_funcionario  
   `)
   return rows
 }
