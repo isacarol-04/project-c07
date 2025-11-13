@@ -62,13 +62,13 @@ project-c07/
     │         examRequestMenu.js   
     │
     └─── models
-                appointment.js       # CRUD de Consultas
-                doctor.js            # CRUD de Médicos
-                employee.js          # CRUD de Funcionários
-                patient.js           # CRUD de Pacientes
-                specialty.js         # CRUD de Especialidades
-                exam.js              # CRUD de Exames
-                examRequest.js       # CRUD de Solicitações de Exames
+              appointment.js       # CRUD de Consultas
+              doctor.js            # CRUD de Médicos
+              employee.js          # CRUD de Funcionários
+              patient.js           # CRUD de Pacientes
+              specialty.js         # CRUD de Especialidades
+              exam.js              # CRUD de Exames
+              examRequest.js       # CRUD de Solicitações de Exames
 ```
 
 ---
@@ -78,7 +78,7 @@ project-c07/
 1. **Clone o repositório ou copie os arquivos:**
    ```bash
    git clone https://github.com/isacarol-04/project-c07.git
-   cd clinic-project-c07
+   cd project-c07
    ```
 
 2. **Instale as dependências:**
